@@ -1,0 +1,27 @@
+<button class="btn btn-danger" type="button" onclick="doSubscribe();">ติดตาม
+    
+</button>
+
+<script>
+    function doSubscribe(){
+        var ajax = new XMLHttpRequest();
+        ajax.open("POST", "/do-subscribe", true);
+        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+        ajax.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                var response = JSON.parse(this.responseText);
+                if (response.status == "success"){
+                    var totalSubscribers = parseInt(document.getElementById("total-subscribers").innerText);
+                    totalSubscribers++;
+                    document.getElementById("total-subscribers").innerText = totalSubscribers;
+                } else {
+                    alert(response.message);
+                }
+            }
+        };
+
+        var videoId = document.getElementById("videoId").value;
+        ajax.send("videoId=" + videoId);
+    }
+</script>
