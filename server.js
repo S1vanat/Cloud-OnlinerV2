@@ -79,7 +79,7 @@ http.listen(3000, function () {
   console.log("Server started at port 3000");
 
   mongoose
-    .connect("mongodb://172.31.80.142:27017/Cloud-onliner", {
+    .connect("mongodb://18.212.102.195:27017/Cloud-onliner", {
      
     })
     .then(() => {
